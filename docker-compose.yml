@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    container_name: sternwarte-planer
+    ports:
+      - "8080:80"
+    # Entwicklung: index.html direkt einbinden, Änderungen sind nach einem Reload sichtbar
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
