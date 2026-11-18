@@ -1,9 +1,20 @@
 services:
+  # Entwicklung: Vite-Dev-Server mit Live-Reload
+  dev:
+    image: node:24-alpine
+    container_name: sternwarte-planer-dev
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules # node_modules bleiben im Container
+
+  # Produktion: gebaute App über nginx (Start mit: docker compose --profile prod up -d --build)
   web:
     build: .
     container_name: sternwarte-planer
+    profiles: [prod]
     ports:
       - "8080:80"
-    # Entwicklung: index.html direkt einbinden, Änderungen sind nach einem Reload sichtbar
-    volumes:
-      - ./index.html:/usr/share/nginx/html/index.html:ro

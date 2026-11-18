@@ -1,0 +1,81 @@
+/* ==========================================================================
+   Globale Grundlagen: Design-Tokens, Basis-Stile, Hilfsklassen
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* Flächen */
+  --bg: #070b16;
+  --surface: #0c1222;
+  --surface-2: #111a2e;
+  --border: #1c2640;
+
+  /* Text */
+  --text: #c3cadc;
+  --text-muted: #7f89a6;
+  --text-h: #eef1f8;
+
+  /* Akzente */
+  --accent: #6d8bff;
+  --accent-soft: rgba(109, 139, 255, 0.16);
+
+  /* Maße */
+  --sidebar-w: 13rem;
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
+  --gap: 1.5rem;
+
+  --font: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --gap: 1rem;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+svg {
+  flex: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Nur für Screenreader sichtbar */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

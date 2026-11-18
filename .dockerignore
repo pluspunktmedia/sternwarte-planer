@@ -1,6 +1,9 @@
 .git
 .github
 .vscode
+node_modules
+dist
+docs
 *.md
 docker-compose.yml
 Dockerfile
