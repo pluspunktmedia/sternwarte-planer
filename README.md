@@ -55,10 +55,11 @@ npm run lint     # Code-Prüfung
 sternwarte-planer/
 ├── src/
 │   ├── main.tsx              # Einstiegspunkt, bindet React ein
-│   ├── App.tsx               # Grundgerüst der Seite
+│   ├── App.tsx               # Grundgerüst und Seitenwechsel
 │   ├── index.css             # Design-Tokens und globale Stile
-│   ├── components/           # Oberflächen-Bausteine (Navigation, Kopfzeile, Tabelle, Icons)
-│   ├── data/                 # Daten (Standort, Mond und Planeten)
+│   ├── pages/                # Seiten (Himmel, Objekte, Planeten, Einstellungen)
+│   ├── components/           # Oberflächen-Bausteine (Navigation, Kopfzeile, Karten, Tabellen, Icons)
+│   ├── data/                 # Daten (Standort, Mond und Planeten, Deep-Sky-Objekte)
 │   └── lib/                  # Hilfsfunktionen (Positionsberechnung, Formatierung)
 ├── public/
 │   └── icons/                # Icons als SVG-Dateien

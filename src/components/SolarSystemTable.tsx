@@ -1,0 +1,46 @@
+import { useMemo } from 'react';
+import { STERNWARTE } from '../data/location';
+import { computeSolarSystemPositions } from '../lib/planets';
+import { formatAzimuth, formatDegrees, formatRa } from '../lib/format';
+
+interface SolarSystemTableProps {
+  /** Zeitpunkt, für den die Positionen berechnet werden */
+  date: Date;
+}
+
+/** Tabelle mit den berechneten Positionen von Mond und Planeten */
+export default function SolarSystemTable({ date }: SolarSystemTableProps) {
+  const objects = useMemo(() => computeSolarSystemPositions(date, STERNWARTE), [date]);
+
+  return (
+    <div className="table-wrap">
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">Objekt</th>
+            <th scope="col">Sternbild</th>
+            <th scope="col">Höhe</th>
+            <th scope="col">Azimut</th>
+            <th scope="col">RA (J2000)</th>
+            <th scope="col">Dek (J2000)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {objects.map((obj) => (
+            <tr key={obj.name} className={obj.altitude < 0 ? 'is-below' : undefined}>
+              <th scope="row">
+                {obj.name}
+                {obj.illuminated !== undefined && ` (${Math.round(obj.illuminated * 100)} %)`}
+              </th>
+              <td>{obj.constellation}</td>
+              <td>{formatDegrees(obj.altitude)}</td>
+              <td>{formatAzimuth(obj.azimuth)}</td>
+              <td>{formatRa(obj.raHours)}</td>
+              <td>{formatDegrees(obj.decDeg)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

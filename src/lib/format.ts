@@ -25,3 +25,9 @@ export function formatRa(hours: number): string {
   const m = totalMinutes % 60;
   return `${h}h ${String(m).padStart(2, '0')}m`;
 }
+
+/** Helligkeit in Größenklassen, z. B. 1.6 → "1,6 mag" */
+export function formatMagnitude(value: number): string {
+  const text = value.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  return `${text.replace('-', '−')} mag`;
+}

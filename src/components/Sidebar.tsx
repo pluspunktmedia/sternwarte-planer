@@ -1,17 +1,20 @@
+import type { PageId } from '../lib/useHashPage';
 import Icon, { type IconName } from './Icons';
 
-const NAV: { href: string; label: string; icon: IconName }[] = [
-  { href: '#himmel', label: 'Himmel', icon: 'sparkles' },
-  { href: '#objekte', label: 'Objekte', icon: 'star' },
-  { href: '#planeten', label: 'Planeten', icon: 'planet' },
-  { href: '#einstellungen', label: 'Einstellungen', icon: 'gear' },
+const NAV: { page: PageId; label: string; icon: IconName }[] = [
+  { page: 'himmel', label: 'Himmel', icon: 'sparkles' },
+  { page: 'objekte', label: 'Objekte', icon: 'star' },
+  { page: 'planeten', label: 'Planeten', icon: 'planet' },
+  { page: 'einstellungen', label: 'Einstellungen', icon: 'gear' },
 ];
 
-/** Seitenleiste mit Logo, Hauptnavigation und Nachtmodus-Schalter */
-export default function Sidebar() {
-  // Seitenwechsel folgt in einem späteren Schritt, bis dahin ist "Himmel" fest aktiv
-  const current = '#himmel';
+interface SidebarProps {
+  /** Aktuell angezeigte Seite */
+  current: PageId;
+}
 
+/** Seitenleiste mit Logo, Hauptnavigation und Nachtmodus-Schalter */
+export default function Sidebar({ current }: SidebarProps) {
   return (
     <aside className="sidebar">
       <a className="brand" href="#himmel">
@@ -21,9 +24,9 @@ export default function Sidebar() {
 
       <nav className="nav" aria-label="Hauptnavigation">
         <ul>
-          {NAV.map(({ href, label, icon }) => (
-            <li key={href}>
-              <a className="nav__link" href={href} aria-current={href === current ? 'page' : undefined}>
+          {NAV.map(({ page, label, icon }) => (
+            <li key={page}>
+              <a className="nav__link" href={`#${page}`} aria-current={page === current ? 'page' : undefined}>
                 <Icon name={icon} />
                 <span className="nav__label">{label}</span>
               </a>

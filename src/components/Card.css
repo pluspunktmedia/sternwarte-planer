@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Karte „Aktuelle Objekte“ mit Tabelle
+   Karten und Tabellen
    ========================================================================== */
 
 .card {
@@ -88,4 +88,16 @@
 .table tr.is-below th,
 .table tr.is-below td {
   color: var(--text-muted);
+}
+
+/* Eigenname hinter der Katalognummer */
+.table__sub {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Fließtext in einer Karte */
+.card__body {
+  margin: 0;
+  padding: 0 1.25rem 1.25rem;
 }
