@@ -10,7 +10,9 @@ export type IconName =
   | 'gear'
   | 'moon'
   | 'calendar'
-  | 'arrow-right';
+  | 'arrow-right'
+  | 'chevron-down'
+  | 'refresh';
 
 interface IconProps {
   name: IconName;

@@ -110,7 +110,12 @@
   gap: 1rem;
 }
 
-.field {
+.topbar__pop {
+  position: relative;
+}
+
+/* Schaltfläche mit Datum und Uhrzeit */
+.pill {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -122,17 +127,134 @@
   cursor: pointer;
 }
 
-.field:focus-within {
-  border-color: var(--accent);
+.pill:hover,
+.pill[aria-expanded='true'] {
+  border-color: var(--border-strong);
+}
+
+.pill__icon {
+  color: var(--accent);
+}
+
+.pill__value {
+  color: var(--text-h);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Aufklappfeld unter der Datumsschaltfläche */
+.popover {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 16rem;
+  padding: 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
 .field__input {
-  padding: 0;
-  border: 0;
-  background: none;
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   color: var(--text-h);
-  outline: none;
+  font-size: 1rem;
+}
+
+.field__input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-h);
   cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+}
+
+.btn--primary {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.btn--primary:hover {
+  background: var(--accent);
+}
+
+/* Rechte Seite: Live-Anzeige und Zurücksetzen */
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  background: none;
+  border: 0;
+  color: var(--text-h);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.live__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.live.is-live .live__dot {
+  background: var(--live);
+  box-shadow: 0 0 8px var(--live);
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-h);
 }
 
 /* Responsiv: Seitenleiste wird zur Kopfleiste

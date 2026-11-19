@@ -10,6 +10,7 @@
   --surface: #0c1222;
   --surface-2: #111a2e;
   --border: #1c2640;
+  --border-strong: #2a3456;
 
   /* Text */
   --text: #c3cadc;
@@ -18,7 +19,9 @@
 
   /* Akzente */
   --accent: #6d8bff;
+  --accent-strong: #4d6cf5;
   --accent-soft: rgba(109, 139, 255, 0.16);
+  --live: #36d17a;
 
   /* Maße */
   --sidebar-w: 13rem;

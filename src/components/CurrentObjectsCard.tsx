@@ -6,17 +6,13 @@ import Icon from './Icons';
 import './CurrentObjectsCard.css';
 
 interface CurrentObjectsCardProps {
-  /** Zeitpunkt im Format "YYYY-MM-DDTHH:mm" (Ortszeit des Browsers) */
-  dateTime: string;
+  /** Zeitpunkt, für den die Positionen berechnet werden */
+  date: Date;
 }
 
 /** Tabelle mit den berechneten Positionen von Mond und Planeten */
-export default function CurrentObjectsCard({ dateTime }: CurrentObjectsCardProps) {
-  const objects = useMemo(() => {
-    const date = new Date(dateTime);
-    // Leeres oder unvollständiges Eingabefeld → nichts berechnen
-    return Number.isNaN(date.getTime()) ? [] : computeSolarSystemPositions(date, STERNWARTE);
-  }, [dateTime]);
+export default function CurrentObjectsCard({ date }: CurrentObjectsCardProps) {
+  const objects = useMemo(() => computeSolarSystemPositions(date, STERNWARTE), [date]);
 
   return (
     <section className="card" aria-labelledby="objekte-titel">
