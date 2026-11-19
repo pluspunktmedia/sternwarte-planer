@@ -1,10 +1,23 @@
-import { CURRENT_OBJECTS } from '../data/currentObjects';
+import { useMemo } from 'react';
+import { STERNWARTE } from '../data/location';
+import { computeSolarSystemPositions } from '../lib/planets';
 import { formatAzimuth, formatDegrees, formatRa } from '../lib/format';
 import Icon from './Icons';
 import './CurrentObjectsCard.css';
 
-/** Tabelle der aktuell interessanten Objekte (vorerst feste Daten) */
-export default function CurrentObjectsCard() {
+interface CurrentObjectsCardProps {
+  /** Zeitpunkt im Format "YYYY-MM-DDTHH:mm" (Ortszeit des Browsers) */
+  dateTime: string;
+}
+
+/** Tabelle mit den berechneten Positionen von Mond und Planeten */
+export default function CurrentObjectsCard({ dateTime }: CurrentObjectsCardProps) {
+  const objects = useMemo(() => {
+    const date = new Date(dateTime);
+    // Leeres oder unvollständiges Eingabefeld → nichts berechnen
+    return Number.isNaN(date.getTime()) ? [] : computeSolarSystemPositions(date, STERNWARTE);
+  }, [dateTime]);
+
   return (
     <section className="card" aria-labelledby="objekte-titel">
       <header className="card__header">
@@ -31,7 +44,7 @@ export default function CurrentObjectsCard() {
             </tr>
           </thead>
           <tbody>
-            {CURRENT_OBJECTS.map((obj) => (
+            {objects.map((obj) => (
               <tr key={obj.name} className={obj.altitude < 0 ? 'is-below' : undefined}>
                 <th scope="row">
                   {obj.name}

@@ -8,6 +8,7 @@ Webanwendung zur Beobachtungsplanung für eine Sternwarte: Sternenhimmel, Deep-S
 
 - [React 19](https://react.dev/) mit TypeScript
 - [Vite](https://vite.dev/) als Entwicklungsserver und Build-Werkzeug
+- [astronomy-engine](https://github.com/cosinekitty/astronomy) für die Positionsberechnung von Himmelskörpern
 - ESLint für die Code-Prüfung
 - Docker: Node für die Entwicklung, nginx für die Auslieferung
 
@@ -57,8 +58,8 @@ sternwarte-planer/
 │   ├── App.tsx               # Grundgerüst der Seite
 │   ├── index.css             # Design-Tokens und globale Stile
 │   ├── components/           # Oberflächen-Bausteine (Navigation, Kopfzeile, Tabelle, Icons)
-│   ├── data/                 # Daten (vorerst feste Beispielwerte)
-│   └── lib/                  # Hilfsfunktionen (Formatierung)
+│   ├── data/                 # Daten (Standort, Mond und Planeten)
+│   └── lib/                  # Hilfsfunktionen (Positionsberechnung, Formatierung)
 ├── public/
 │   └── icons/                # Icons als SVG-Dateien
 ├── docs/

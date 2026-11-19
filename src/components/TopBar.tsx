@@ -1,11 +1,13 @@
-import { useState } from 'react';
 import Icon from './Icons';
 
-/** Kopfzeile mit der Auswahl von Datum und Uhrzeit */
-export default function TopBar() {
-  // Format von <input type="datetime-local">: "YYYY-MM-DDTHH:mm"
-  const [dateTime, setDateTime] = useState('2026-11-17T14:54');
+interface TopBarProps {
+  /** Zeitpunkt im Format "YYYY-MM-DDTHH:mm" */
+  dateTime: string;
+  onDateTimeChange: (value: string) => void;
+}
 
+/** Kopfzeile mit der Auswahl von Datum und Uhrzeit */
+export default function TopBar({ dateTime, onDateTimeChange }: TopBarProps) {
   return (
     <header className="topbar">
       <label className="field">
@@ -15,7 +17,7 @@ export default function TopBar() {
           className="field__input"
           type="datetime-local"
           value={dateTime}
-          onChange={(e) => setDateTime(e.target.value)}
+          onChange={(e) => onDateTimeChange(e.target.value)}
         />
       </label>
     </header>
