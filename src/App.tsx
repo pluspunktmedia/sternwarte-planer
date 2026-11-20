@@ -2,6 +2,7 @@ import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import { useHashPage } from './lib/useHashPage';
 import { useObservationTime } from './lib/useObservationTime';
+import { useObserverLocation } from './lib/useObserverLocation';
 import HimmelPage from './pages/HimmelPage';
 import ObjektePage from './pages/ObjektePage';
 import PlanetenPage from './pages/PlanetenPage';
@@ -12,6 +13,8 @@ import './components/Layout.css';
 export default function App() {
   // Beobachtungszeitpunkt: läuft live mit oder ist fest gewählt
   const time = useObservationTime();
+  // Beobachtungsort: Sternwarte oder per GPS bestimmter Standort
+  const observer = useObserverLocation();
   const page = useHashPage();
 
   return (
@@ -19,11 +22,11 @@ export default function App() {
       <Sidebar current={page} />
 
       <div className="app__main">
-        <TopBar time={time} />
+        <TopBar time={time} observer={observer} />
         <main className="app__content">
-          {page === 'himmel' && <HimmelPage date={time.date} />}
-          {page === 'objekte' && <ObjektePage date={time.date} />}
-          {page === 'planeten' && <PlanetenPage date={time.date} />}
+          {page === 'himmel' && <HimmelPage date={time.date} location={observer.location} />}
+          {page === 'objekte' && <ObjektePage date={time.date} location={observer.location} />}
+          {page === 'planeten' && <PlanetenPage date={time.date} location={observer.location} />}
           {page === 'einstellungen' && <EinstellungenPage />}
         </main>
       </div>

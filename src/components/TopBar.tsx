@@ -1,14 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
+import { LOCATION_PRESETS } from '../data/location';
 import { formatDateTime, toLocalInputValue } from '../lib/dateInput';
+import { formatCoordinates } from '../lib/format';
 import type { ObservationTime } from '../lib/useObservationTime';
+import type { ObserverLocation } from '../lib/useObserverLocation';
 import Icon from './Icons';
 
 interface TopBarProps {
   time: ObservationTime;
+  observer: ObserverLocation;
 }
 
-/** Kopfzeile mit der Auswahl von Datum und Uhrzeit sowie der Live-Anzeige */
-export default function TopBar({ time }: TopBarProps) {
+/** Werte der Standortauswahl, die keinem festen Ort entsprechen */
+const CUSTOM = 'eigener';
+const GPS = 'gps';
+
+/** Kopfzeile mit der Auswahl von Datum, Uhrzeit und Standort sowie der Live-Anzeige */
+export default function TopBar({ time, observer }: TopBarProps) {
   const [dateOpen, setDateOpen] = useState(false);
   const datePopRef = useRef<HTMLDivElement>(null);
 
@@ -28,6 +36,11 @@ export default function TopBar({ time }: TopBarProps) {
       document.removeEventListener('keydown', onKey);
     };
   }, [dateOpen]);
+
+  function handleLocationChange(value: string) {
+    if (value === GPS) observer.locate();
+    else observer.selectPreset(value);
+  }
 
   return (
     <header className="topbar">
@@ -68,6 +81,32 @@ export default function TopBar({ time }: TopBarProps) {
           </div>
         )}
       </div>
+
+      <label className="pill pill--select" title={formatCoordinates(observer.location)}>
+        <Icon name="pin" className="pill__icon" />
+        <select
+          value={observer.locating ? GPS : (observer.presetId ?? CUSTOM)}
+          onChange={(e) => handleLocationChange(e.target.value)}
+          aria-label="Standort"
+        >
+          {LOCATION_PRESETS.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.name}
+            </option>
+          ))}
+          <option value={CUSTOM} disabled>
+            Eigener Standort
+          </option>
+          <option value={GPS}>{observer.locating ? 'Standort wird bestimmt …' : 'Mein Standort (GPS)'}</option>
+        </select>
+        <Icon name="chevron-down" size={16} />
+      </label>
+
+      {observer.geoError && (
+        <p className="topbar__error" role="alert">
+          {observer.geoError}
+        </p>
+      )}
 
       <div className="topbar__right">
         <button

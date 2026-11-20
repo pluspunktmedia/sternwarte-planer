@@ -12,7 +12,8 @@ export type IconName =
   | 'calendar'
   | 'arrow-right'
   | 'chevron-down'
-  | 'refresh';
+  | 'refresh'
+  | 'pin';
 
 interface IconProps {
   name: IconName;

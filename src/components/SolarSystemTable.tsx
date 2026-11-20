@@ -1,16 +1,18 @@
 import { useMemo } from 'react';
-import { STERNWARTE } from '../data/location';
+import type { Location } from '../data/location';
 import { computeSolarSystemPositions } from '../lib/planets';
 import { formatAzimuth, formatDegrees, formatRa } from '../lib/format';
 
 interface SolarSystemTableProps {
   /** Zeitpunkt, für den die Positionen berechnet werden */
   date: Date;
+  /** Beobachtungsort */
+  location: Location;
 }
 
 /** Tabelle mit den berechneten Positionen von Mond und Planeten */
-export default function SolarSystemTable({ date }: SolarSystemTableProps) {
-  const objects = useMemo(() => computeSolarSystemPositions(date, STERNWARTE), [date]);
+export default function SolarSystemTable({ date, location }: SolarSystemTableProps) {
+  const objects = useMemo(() => computeSolarSystemPositions(date, location), [date, location]);
 
   return (
     <div className="table-wrap">

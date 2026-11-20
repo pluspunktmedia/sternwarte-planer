@@ -1,17 +1,19 @@
 import { useMemo } from 'react';
 import { BRIGHTEST_DEEP_SKY } from '../data/deepSky';
-import { STERNWARTE } from '../data/location';
+import type { Location } from '../data/location';
 import { computeDeepSkyPositions } from '../lib/deepSky';
 import { formatAzimuth, formatDegrees, formatMagnitude } from '../lib/format';
 
 interface DeepSkyTableProps {
   /** Zeitpunkt, für den die Positionen berechnet werden */
   date: Date;
+  /** Beobachtungsort */
+  location: Location;
 }
 
 /** Tabelle der hellsten Deep-Sky-Objekte, sortiert nach Helligkeit */
-export default function DeepSkyTable({ date }: DeepSkyTableProps) {
-  const objects = useMemo(() => computeDeepSkyPositions(date, STERNWARTE, BRIGHTEST_DEEP_SKY), [date]);
+export default function DeepSkyTable({ date, location }: DeepSkyTableProps) {
+  const objects = useMemo(() => computeDeepSkyPositions(date, location, BRIGHTEST_DEEP_SKY), [date, location]);
 
   return (
     <div className="table-wrap">

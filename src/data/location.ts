@@ -9,13 +9,19 @@ export interface Location {
   elevation: number;
 }
 
-/**
- * Fester Standort der Sternwarte (Werte aus der Designvorlage).
- * Wird später durch eine Standortauswahl ersetzt.
- */
-export const STERNWARTE: Location = {
+/** Fester Ort zur Auswahl in der Kopfzeile */
+export interface LocationPreset extends Location {
+  id: string;
+}
+
+/** Standort der Sternwarte (Werte aus der Designvorlage) */
+export const STERNWARTE: LocationPreset = {
+  id: 'sternwarte',
   name: 'Sternwarte',
   latitude: 51,
   longitude: 10,
   elevation: 0,
 };
+
+/** Feste Orte für die Standortauswahl, der erste ist der Startwert */
+export const LOCATION_PRESETS: LocationPreset[] = [STERNWARTE];

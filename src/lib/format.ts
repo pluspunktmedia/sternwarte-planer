@@ -26,6 +26,12 @@ export function formatRa(hours: number): string {
   return `${h}h ${String(m).padStart(2, '0')}m`;
 }
 
+/** Koordinaten eines Orts, z. B. "51,0000° N, 10,0000° O" */
+export function formatCoordinates({ latitude, longitude }: { latitude: number; longitude: number }): string {
+  const fmt = (v: number) => Math.abs(v).toLocaleString('de-DE', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+  return `${fmt(latitude)}° ${latitude < 0 ? 'S' : 'N'}, ${fmt(longitude)}° ${longitude < 0 ? 'W' : 'O'}`;
+}
+
 /** Helligkeit in Größenklassen, z. B. 1.6 → "1,6 mag" */
 export function formatMagnitude(value: number): string {
   const text = value.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });

@@ -141,6 +141,35 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Standortauswahl: natives Select im Stil der Schaltflächen */
+.pill--select select {
+  appearance: none;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text-h);
+  font: inherit;
+  cursor: pointer;
+}
+
+.pill--select select:focus-visible {
+  outline: none;
+}
+
+.pill--select:focus-within {
+  border-color: var(--accent);
+}
+
+.pill--select option {
+  background: var(--surface-2);
+}
+
+.topbar__error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.85rem;
+}
+
 /* Aufklappfeld unter der Datumsschaltfläche */
 .popover {
   position: absolute;
