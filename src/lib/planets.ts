@@ -14,6 +14,8 @@ export interface SkyObject {
   raHours: number;
   /** Deklination (J2000) in Grad */
   decDeg: number;
+  /** Scheinbare Helligkeit in Größenklassen (kleiner = heller) */
+  magnitude: number;
   /** Beleuchteter Anteil 0–1 (nur beim Mond angegeben) */
   illuminated?: number;
 }
@@ -34,6 +36,7 @@ function computePosition({ body, name }: SolarSystemBody, date: Date, observer: 
     azimuth: horizontal.azimuth,
     raHours: j2000.ra,
     decDeg: j2000.dec,
+    magnitude: Illumination(body, date).mag,
   };
 }
 

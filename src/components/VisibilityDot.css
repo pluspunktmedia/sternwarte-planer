@@ -1,0 +1,28 @@
+/* Schmale erste Tabellenspalte für den Ampelpunkt */
+.table .vis-col {
+  width: 1px;
+  padding-right: 0;
+}
+
+.vis-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.vis-dot.is-visible {
+  background: var(--live);
+  box-shadow: 0 0 6px var(--live);
+}
+
+.vis-dot.is-rising,
+.vis-dot.is-setting {
+  background: var(--warn);
+  box-shadow: 0 0 6px var(--warn);
+}
+
+.vis-dot.is-down {
+  background: var(--danger);
+}

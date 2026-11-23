@@ -60,7 +60,7 @@ sternwarte-planer/
 │   ├── pages/                # Seiten (Himmel, Objekte, Planeten, Einstellungen)
 │   ├── components/           # Oberflächen-Bausteine (Navigation, Kopfzeile, Karten, Tabellen, Icons)
 │   ├── data/                 # Daten (Standort, Mond und Planeten, Deep-Sky-Objekte)
-│   └── lib/                  # Hilfsfunktionen (Positionsberechnung, Formatierung)
+│   └── lib/                  # Hilfsfunktionen (Positionen, Auf-/Untergang, Sichtbarkeit, Formatierung)
 ├── public/
 │   └── icons/                # Icons als SVG-Dateien
 ├── docs/

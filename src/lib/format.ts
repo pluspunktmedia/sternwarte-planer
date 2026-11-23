@@ -1,3 +1,5 @@
+import type { RiseSet } from './riseSet';
+
 /** Himmelsrichtungen in 22,5°-Schritten, beginnend bei Nord */
 const DIRECTIONS = ['N', 'NNO', 'NO', 'ONO', 'O', 'OSO', 'SO', 'SSO', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
 
@@ -36,4 +38,12 @@ export function formatCoordinates({ latitude, longitude }: { latitude: number; l
 export function formatMagnitude(value: number): string {
   const text = value.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   return `${text.replace('-', '−')} mag`;
+}
+
+/** Auf- oder Untergangszeit als "21:47"; fehlt sie, erklärt der Text warum */
+export function formatRiseSetTime(time: Date | null, riseSet: RiseSet): string {
+  if (time) return time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+  if (riseSet.allDay === 'up') return 'zirkumpolar';
+  if (riseSet.allDay === 'down') return 'geht nicht auf';
+  return '–';
 }
