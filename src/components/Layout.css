@@ -16,6 +16,19 @@
   padding: 1rem var(--gap) var(--gap);
 }
 
+/* Seitenaufbau: Himmelskarte links, Seiteninhalt rechts, schmal untereinander */
+.page-split {
+  display: grid;
+  gap: var(--gap);
+  align-items: start;
+}
+
+@media (min-width: 1200px) {
+  .page-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
 /* Seitenleiste
    ========================================================================== */
 .sidebar {

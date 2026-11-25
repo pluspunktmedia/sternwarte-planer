@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Himmelskarte
+   ========================================================================== */
+
+.sky-card__map {
+  position: relative;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.sky-map {
+  display: block;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  font-family: var(--font);
+}
+
+.sky-map__horizon {
+  fill: none;
+  stroke: rgba(140, 160, 255, 0.55);
+  stroke-width: 0.6;
+}
+
+.sky-map__grid {
+  fill: none;
+  stroke: rgba(170, 190, 255, 0.16);
+  stroke-width: 0.35;
+}
+
+.sky-map__constellation {
+  stroke: rgba(170, 190, 255, 0.4);
+  stroke-width: 0.35;
+}
+
+.sky-map__star {
+  fill: #fff;
+}
+
+.sky-map__star-label {
+  fill: rgba(235, 240, 255, 0.85);
+  font-size: 3.6px;
+}
+
+.sky-map__deepsky {
+  fill: none;
+  stroke: var(--deepsky);
+  stroke-width: 0.45;
+}
+
+.sky-map__deepsky-label {
+  fill: var(--deepsky);
+  font-size: 3.2px;
+}
+
+.sky-map__body {
+  stroke: rgba(0, 0, 0, 0.4);
+  stroke-width: 0.25;
+}
+
+.sky-map__body-label {
+  font-size: 3.6px;
+  font-weight: 600;
+}
+
+.sky-map__cardinal {
+  fill: var(--text-h);
+  font-size: 8px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Legende links unten neben dem Kreis */
+.legend {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-h);
+  font-size: 0.8125rem;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.legend__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.legend__ring {
+  width: 16px;
+  height: 10px;
+  border: 1.5px solid var(--deepsky);
+  border-radius: 50%;
+}
+
+/* Schmal: Legende unter die Karte statt in die Ecke */
+@media (max-width: 600px) {
+  .legend {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-top: 0.75rem;
+  }
+}

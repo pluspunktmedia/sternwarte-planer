@@ -58,8 +58,8 @@ sternwarte-planer/
 │   ├── App.tsx               # Grundgerüst und Seitenwechsel
 │   ├── index.css             # Design-Tokens und globale Stile
 │   ├── pages/                # Seiten (Himmel, Objekte, Planeten, Einstellungen)
-│   ├── components/           # Oberflächen-Bausteine (Navigation, Kopfzeile, Karten, Tabellen, Icons)
-│   ├── data/                 # Daten (Standort, Mond und Planeten, Deep-Sky-Objekte)
+│   ├── components/           # Oberflächen-Bausteine (Navigation, Kopfzeile, Karten, Tabellen, Himmelskarte, Icons)
+│   ├── data/                 # Daten (Standort, Mond und Planeten, Deep-Sky-Objekte, helle Sterne und Sternbildlinien)
 │   └── lib/                  # Hilfsfunktionen (Positionen, Auf-/Untergang, Sichtbarkeit, Formatierung)
 ├── public/
 │   └── icons/                # Icons als SVG-Dateien

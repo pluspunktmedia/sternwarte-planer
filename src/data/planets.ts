@@ -19,3 +19,15 @@ export const PLANETS: SolarSystemBody[] = [
   { body: Body.Uranus, name: 'Uranus' },
   { body: Body.Neptune, name: 'Neptun' },
 ];
+
+/** Farben von Mond und Planeten in der Himmelskarte, Schlüssel = Name */
+export const BODY_COLORS: Record<string, string> = {
+  Mond: '#f5f1d8',
+  Merkur: '#c9b8a3',
+  Venus: '#fff4c2',
+  Mars: '#ff7a4d',
+  Jupiter: '#f2d3a0',
+  Saturn: '#f5b14c',
+  Uranus: '#9fe3e8',
+  Neptun: '#5b8cff',
+};
